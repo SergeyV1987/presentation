@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>React Hooks presentation</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>React Hooks</h1>
+				<p class="fragment">Introduction to the new addition of the React library.</p>
+			</section>
+
+			<section>
+				<section>
+					<h2 style="color: yellow">What Hooks are?</h2>
+					<h2 style="color: yellow" class="fragment fade-right">What Hooks can offer?</h2>
+					<ul>
+						<li class="fragment fade-right">Adds local state and lifecycle-hooks to functional components</li>
+						<li class="fragment fade-right">Use all/most React features without using React built-in classes</li>
+						<li class="fragment fade-right">Allow you to reuse stateful logic without changing your component hierarchy</li>
+						<li class="fragment fade-right">Let you split one component into smaller functions based on what pieces are related, rather than forcing a split based on lifecycle methods.</li>
+					</ul>
+				</section>
+				<section>
+					<h2 style="color: yellow">And for what reasons Hooks where invented?</h2>
+					<ul>
+						<li class="fragment fade-right">Big problem with “wrapper hell” of components surrounded by layers of providers, consumers, higher-order components, render props, and other abstractions.</li>
+						<li class="fragment fade-right">Complex components become hard to understand</li>
+						<li class="fragment fade-right">Classes confuse both people and machines and they can be a large barrier to learning React.</li>
+					</ul>
+				</section>
+			</section>
+
+			<section>
+				<h2 style="color: yellow">Functions vs React Classes</h2>
+				<ul>
+					<li class="fragment fade-right">Functional components are much easier to read and test because they are plain JavaScript functions without state or lifecycle-hooks.</li>
+					<li class="fragment fade-right">It is easier to separate container and presentational components because you need to think more about your component’s state if you don’t have access to setState() in your component.</li>
+					<li class="fragment fade-right">File size is reduced if you are using functional components over classes.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2 style="color: yellow">How to use Hooks?</h2>
+				<ul>
+					<li class="fragment fade-right">Hooks are now available with the release of React v16.8.0</li>
+					<li class="fragment fade-right">Only Call Hooks from React Functions</li>
+					<li class="fragment fade-right">Only Call Hooks at the Top Level</li>
+				</ul>
+			</section>
+
+			<section>
+				<section>
+					<h2 style="color: yellow">UseState</h2>
+					<ul>
+						<li class="fragment fade-right">Use React State within functional components</li>
+						<li class="fragment fade-right">Updating a state variable always replaces it instead of merging it</li>
+						<li class="fragment fade-right">React will remember its current value between re-renders, and provide the most recent one to our function</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 style="color: yellow">Let's look at an example with useState Hook</h2>
+					<pre class="fragment fade-right"><code class="hljs" data-trim data-line-numbers="1,4,9">import React, { useState } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+					<p class="fragment fade-right">It is quite simple and elegant</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+				<h2 style="color: yellow">UseEffect</h2>
+					<ul>
+						<li class="fragment fade-right">useEffect Hook lets you perform side effects in function components</li>
+						<li class="fragment fade-right">Data fetching, setting up a subscription, and manually changing the DOM in React components are all examples of side effects</li>
+						<li class="fragment fade-right">Think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined</li>
+						<li class="fragment fade-right">You can use multiple useEffect() within a component.</li>
+				</ul>
+				</section>
+				<section>
+					<h2 style="color: yellow">Now let's add useEffect Hook to the last example</h2>
+					<pre class="fragment fade-right"><code class="hljs" data-trim data-line-numbers="1,6-8">
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() =&gt; {
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+				<h2 style="color: yellow">Create your own Hooks</h2>
+				<ul>
+					<li class="fragment fade-right">Components and Hooks are just functions</li>
+					<li class="fragment fade-right">If you want to share reusable logic, just extract it to a separate function</li>
+					<li class="fragment fade-right">Hooks always start with a "use" keyword for linting purposes (useState, useEffect, useReducer etc.)</li>
+					<li class="fragment fade-right">Using useState and useEffect you can already create useful custom hooks</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2 style="color: yellow">Should I switch to Hooks?</h2>
+				<ul>
+					<li class="fragment fade-right">You don't need to rewrite all of your components with React Hooks</li>
+					<li class="fragment fade-right">You can try Hooks in a few components without rewriting any existing code</li>
+					<li class="fragment fade-right">Hooks are 100% backwards-compatible</li>
+					<li class="fragment fade-right">React Classes will still be supported in the future and there are no plans to remove them</li>
+					<li class="fragment fade-right">Best practices are still a "work in progress"</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2 style="color: yellow">And...</h2>
+				<h2 style="color: blue" class="fragment fade-right">That's all! Thank you for your attention :)</h2>
+			</section>
+		</div>
+	</div>
+
+
+	<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
