@@ -1,7 +1,7 @@
 [youtube video](https://www.youtube.com/watch?v=m3aJogC2_8k)
 
-[PDF presentation]()
+[PDF presentation](https://github.com/SergeyV1987/presentation/blob/master/React%20Hooks%20presentation.pdf)
 
-[transcrip in English]()
+[transcript in English](https://github.com/SergeyV1987/presentation/blob/master/text)
 
-[index.html file for reveal.js]()
+[index.html file for reveal.js](https://github.com/SergeyV1987/presentation/blob/master/index.html)
